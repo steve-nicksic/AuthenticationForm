@@ -5,6 +5,12 @@
     <title>Hello World!</title>
 </head>
 <body>
-<h1>Hello world!</h1>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
 </body>
 </html>
+
+<!-- This page will only be shown to a logged in user. We personalize it with user's name and give the
+    option to sign out. -->
