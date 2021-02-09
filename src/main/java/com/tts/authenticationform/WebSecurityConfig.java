@@ -15,10 +15,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                         .antMatchers("/", "/home").permitAll()
                         .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                        .loginPage("/login")
+                        .permitAll()
+                .and()
+                .logout()
+                        .permitAll();
     }
+    
 }
 
 /*
     We are configuring the HttpSecurity, which will allow to give access to/restrict certain routs.
-    To start, we permitted all users to access the '/' and '/home' routes.
+    We permitted all users to access the '/' and '/home' routes.
+    Used formLogin to determine what page will be used for logging users.
+    .and() is used to string all of our configurations together.
+    We used permitAll() to make sure all users can access this page as well since everyone needs
+    to access this page to log in.
+    We configure logout, which also allows all users to access this point.
+
  */
